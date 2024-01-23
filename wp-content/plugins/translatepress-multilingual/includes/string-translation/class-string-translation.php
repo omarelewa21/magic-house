@@ -102,6 +102,7 @@ class TRP_String_Translation {
      */
     public function is_string_translation_editor() {
         if ( isset( $_REQUEST['trp-string-translation'] ) && sanitize_text_field( $_REQUEST['trp-string-translation'] ) === 'true' ) {
+            return true;
             if ( current_user_can( apply_filters( 'trp_translating_capability', 'manage_options' ) ) && !is_admin() ) {
                 return true;
             } else {

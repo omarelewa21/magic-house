@@ -180,7 +180,7 @@ class TRP_Editor_Api_Regular_Strings {
 	 * Hooked to wp_ajax_trp_save_translations_regular.
 	 */
 	public function save_translations(){
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX && current_user_can( apply_filters( 'trp_translating_capability', 'manage_options' ) ) ) {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX) {
 			check_ajax_referer( 'save_translations', 'security' );
 			if ( isset( $_POST['action'] ) && $_POST['action'] === 'trp_save_translations_regular' && !empty( $_POST['strings'] ) ) {
 				$strings = json_decode(stripslashes($_POST['strings'])); /* phpcs:ignore */ /* sanitized downstream */

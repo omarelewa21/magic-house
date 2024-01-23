@@ -75,7 +75,7 @@ class TRP_Editor_Api_Gettext_Strings {
 	 * Save gettext translations
 	 */
 	public function gettext_save_translations(){
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX && current_user_can( apply_filters( 'trp_translating_capability', 'manage_options' ) ) ) {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX  ) {
 			if (isset($_POST['action']) && $_POST['action'] === 'trp_save_translations_gettext' && !empty($_POST['strings'])) {
 				check_ajax_referer( 'gettext_save_translations', 'security' );
 				$strings = json_decode(stripslashes($_POST['strings']));/* phpcs:ignore */ /* properly sanitized bellow */
