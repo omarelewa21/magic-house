@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the WordPress - 6.4.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-18 08:25:23+0000\n"
+"PO-Revision-Date: 2024-02-13 12:49:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n % 100 >= 3 && n % 100 <= 10) ? 3 : ((n % 100 >= 11 && n % 100 <= 99) ? 4 : 5))));\n"
-"X-Generator: GlotPress/4.0.0-alpha.11\n"
+"X-Generator: GlotPress/4.0.0-beta.2\n"
 "Language: ar\n"
 "Project-Id-Version: WordPress - 6.4.x - Development - Administration\n"
 
@@ -37,6 +37,46 @@ msgctxt "default GMT offset or timezone string"
 msgid "0"
 msgstr "3"
 
+#: wp-admin/my-sites.php:81 wp-admin/network/menu.php:53
+#: wp-admin/network/site-new.php:182 wp-admin/network/site-new.php:192
+#: wp-admin/network/sites.php:381
+msgid "Add New Site"
+msgstr "أضف موقع جديد"
+
+#: wp-admin/menu.php:305 wp-admin/plugins.php:752 wp-admin/network/menu.php:106
+msgid "Add New Plugin"
+msgstr "أضف إضافة جديدة"
+
+#: wp-admin/about.php:229
+msgid "Enjoy new writing improvements"
+msgstr "استمتع بتحسينات الكتابة الجديدة"
+
+#: wp-admin/includes/user.php:722 wp-admin/includes/user.php:744
+msgid "Invalid URL format."
+msgstr "صيغة الرابط URL غير صحيحة."
+
+#: wp-admin/includes/image-edit.php:270
+msgid "Clear Crop"
+msgstr "مسح الاقتصاص"
+
+#: wp-admin/includes/image-edit.php:270
+msgid "Apply Crop"
+msgstr "تطبيق الاقتصاص"
+
+#. translators: Hidden accessibility text.
+#: wp-admin/includes/class-wp-list-table.php:1599
+msgid "Descending."
+msgstr "تنازلي."
+
+#. translators: Hidden accessibility text.
+#: wp-admin/includes/class-wp-list-table.php:1597
+msgid "Ascending."
+msgstr "تصاعدي."
+
+#: wp-admin/includes/class-wp-debug-data.php:846
+msgid "Current time"
+msgstr "الوقت الحالي"
+
 #: wp-admin/comment.php:72 wp-admin/edit-comments.php:232
 #: wp-admin/edit-form-advanced.php:320 wp-admin/edit-form-advanced.php:338
 #: wp-admin/edit-form-advanced.php:356 wp-admin/edit-link-form.php:77
@@ -64,6 +104,10 @@ msgstr "<a href=\"https://ar.wordpress.org/support/forums/\">منتديات ال
 msgid "<strong>View</strong> takes you to a public author archive which lists all the posts published by the user."
 msgstr "ينقلك الخيار <strong>عرض</strong> إلى أرشيف كاتب عام يسرد جميع المقالات التي نشرها المستخدم."
 
+#: wp-admin/upload.php:385
+msgid "<strong>Download file</strong> downloads the original media file to your device."
+msgstr "<strong>تنزيل ملف</strong> تنزيل ملف الوسائط الأصلي إلى جهازك."
+
 #: wp-admin/site-editor.php:35
 msgctxt "site editor title tag"
 msgid "Editor"
@@ -77,6 +121,14 @@ msgstr "<a href=\"https://wordpress.org/documentation/article/plugins-themes-aut
 #: wp-admin/options-general.php:430
 msgid "<a href=\"https://wordpress.org/documentation/article/customize-date-and-time-format/\">Documentation on date and time formatting</a>."
 msgstr "<a href=\"https://wordpress.org/documentation/article/customize-date-and-time-format/\">وثائق المساعدة - صيغة التاريخ والوقت</a>."
+
+#: wp-admin/options-general.php:46 wp-admin/network/settings.php:56
+msgid "You can set the language, and WordPress will automatically download and install the translation files (available if your filesystem is writable)."
+msgstr "يمكنك ضبط اللغة، وسيقوم ووردبريس بتنزيلها وتثبيتها تلقائياً (إذا كان نظام الملفات الخاص بك قابل للكتابة)."
+
+#: wp-admin/options-general.php:43
+msgid "If you want site visitors to be able to register themselves, check the membership box. If you want the site administrator to register every new user, leave the box unchecked. In either case, you can set a default user role for all new users."
+msgstr "إذا ما أردت ان يتمكن زوار الموقع من تسجيل أنفسهم، قم بتعيين خيار العضوية. إذا أردت أن يتم تسجيل المستخدمين الجدد من خلال مدير الموقع فقط، قم بإزالة الخيار. في كلا الحالتين، يمكنك ضبط وتعيين تعيين دور المستخدم الافتراضي لكل المستخدمين الجدد."
 
 #. translators: 1: http://, 2: https:
 #: wp-admin/options-general.php:39
@@ -118,12 +170,12 @@ msgid "Download &#8220;%s&#8221;"
 msgstr "تنزيل &#8220;%s&#8221;"
 
 #. translators: The localized WordPress download URL.
-#: wp-admin/about.php:406
+#: wp-admin/about.php:433
 msgid "https://wordpress.org/download/"
 msgstr "https://ar.wordpress.org/download/"
 
 #. translators: %s: The major version of WordPress for this branch.
-#: wp-admin/about.php:403
+#: wp-admin/about.php:430
 msgid "This is the final release of WordPress %s"
 msgstr "هذا هو الإصدار الأخير من ووردبريس %s"
 
@@ -314,17 +366,17 @@ msgid "Reach out to WordPress Core developers to ensure you'll never have this p
 msgstr "تواصل مع مطوري نواة الووردبريس للتأكد من أنك لن تواجه هذه المشكلة مرة أخرى."
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:400
+#: wp-admin/about.php:427
 msgid "Important! Your version of WordPress (%1$s) will stop receiving security updates in the near future. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "هامّ! سيتوقف قريبًا إصدار تحديثات لنسخة ووردبريس (%1$s) التي لديك. إذا أردت أن يبقى موقعك آمنًا، <a href=\"%2$s\">حدّث رجاءً نسخة ووردبريس التي لديك</a>."
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:397
+#: wp-admin/about.php:424
 msgid "Important! Your version of WordPress (%1$s) is no longer supported, you will not receive any security updates for your website. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "هامّ! تم رفع الدعم عن نسخة ووربريس (%1$s) التي لديك، ولذا فإن موقعك لن يتلقى أي تحديثات لتعزيز الأمان. إذا أردت أن يبقى موقعك آمنا، رجاءً <a href=\"%2$s\">حدّث نسخة ووردبريس التي لديك</a>."
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:271
+#: wp-admin/about.php:298
 msgid "Learn more about WordPress %s"
 msgstr "معرفة المزيد حول ووردبريس %s"
 
@@ -1245,7 +1297,7 @@ msgstr "إضافة كلمة مرور التطبيق الجديدة"
 msgid "Required to create an Application Password, but not to update the user."
 msgstr "مطلوب لإنشاء كلمة مرور التطبيق، ولكن ليس لتحديث المستخدم."
 
-#: wp-admin/about.php:341
+#: wp-admin/about.php:368
 msgid "Go to Updates"
 msgstr "الانتقال إلى التحديثات"
 
@@ -1602,7 +1654,7 @@ msgstr "قيمة الـ \"%1$s\" أصغر من \"%2$s\""
 msgid "Environment type"
 msgstr "نوع البيئة"
 
-#: wp-admin/about.php:257
+#: wp-admin/about.php:284
 msgid "Accessibility"
 msgstr "إمكانية الوصول"
 
@@ -3262,7 +3314,7 @@ msgstr "https://make.wordpress.org/hosting/handbook/handbook/server-environment/
 msgid "The WordPress Hosting Team maintains a list of those modules, both recommended and required, in <a href=\"%1$s\" %2$s>the team handbook%3$s</a>."
 msgstr "يحافظ فريق استضافة ووردبريس على صيانة قائمة هذه الوحدات، الموصى بها والمطلوب منها، في <a href=\"%1$s\" %2$s>الدليل الإرشادي للفريق%3$s</a>"
 
-#: wp-admin/about.php:247 wp-admin/includes/class-wp-site-health.php:259
+#: wp-admin/about.php:274 wp-admin/includes/class-wp-site-health.php:259
 #: wp-admin/includes/class-wp-site-health.php:737
 #: wp-admin/includes/class-wp-site-health.php:884
 #: wp-admin/includes/class-wp-site-health.php:1122
@@ -4578,7 +4630,7 @@ msgstr "إضافة إلى: %s"
 msgid "Track %s."
 msgstr "المسار %s"
 
-#: wp-admin/includes/schema.php:1282
+#: wp-admin/includes/schema.php:1280
 msgid "My Network"
 msgstr "شبكتي"
 
@@ -5890,6 +5942,10 @@ msgctxt "comment status"
 msgid "Open"
 msgstr "مفتوح"
 
+#: wp-admin/includes/image-edit.php:66
+msgid "Image Rotation"
+msgstr "تدوير الصورة"
+
 #. translators: %s: Meetup organization documentation URL.
 #: wp-admin/includes/dashboard.php:1520
 msgid "There are no events scheduled near you at the moment. Would you like to <a href=\"%s\">organize a WordPress event</a>?"
@@ -6184,8 +6240,8 @@ msgstr "عذرًا، ﻻ يُسمح لك بإضافة مستخدمين إلى ه
 msgid "Sorry, you are not allowed to edit this changeset."
 msgstr "عذرًا، غير مسموح لك بتحرير هذه الحزمة من التغييرات."
 
-#: wp-admin/includes/ajax-actions.php:4329 wp-admin/update.php:207
-#: wp-admin/update.php:230
+#: wp-admin/includes/ajax-actions.php:4329 wp-admin/update.php:211
+#: wp-admin/update.php:234
 msgid "Sorry, you are not allowed to update themes for this site."
 msgstr "عفوًا، غير مسموح لك بتحديث قوالب هذا الموقع."
 
@@ -6429,7 +6485,7 @@ msgid "Sorry, you are not allowed to delete themes on this site."
 msgstr "عفوًا، غير مسموح لك بحذف القوالب على هذا الموقع."
 
 #: wp-admin/includes/ajax-actions.php:4202 wp-admin/theme-install.php:16
-#: wp-admin/update.php:258 wp-admin/update.php:300 wp-admin/update.php:334
+#: wp-admin/update.php:262 wp-admin/update.php:304 wp-admin/update.php:342
 msgid "Sorry, you are not allowed to install themes on this site."
 msgstr "عذرًا، ﻻ يُسمح لك بتثبيت القوالب على هذا الموقع."
 
@@ -6931,7 +6987,7 @@ msgid "(Currently set to: %s)"
 msgstr "(حاليًا معيّنة لـ: %s)"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:371
+#: wp-admin/about.php:398
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "<strong>النسخة %s</strong> عالجت مشكلة أمنية واحدة."
 
@@ -6943,15 +6999,15 @@ msgstr "https://en.gravatar.com/"
 msgid "Profile Picture"
 msgstr "صورة الحساب"
 
-#: wp-admin/about.php:48 wp-admin/about.php:368
+#: wp-admin/about.php:48 wp-admin/about.php:395
 msgid "Maintenance and Security Releases"
 msgstr "الصيانة والإصدارات الأمنية"
 
-#: wp-admin/about.php:365
+#: wp-admin/about.php:392
 msgid "Security Releases"
 msgstr "الإصدارات الأمنية"
 
-#: wp-admin/about.php:362
+#: wp-admin/about.php:389
 msgid "Maintenance Releases"
 msgstr "إصدارات الصيانة"
 
@@ -9967,6 +10023,11 @@ msgstr "تحرير التعليق"
 msgid "Preview:"
 msgstr "معاينة:"
 
+#: wp-admin/includes/class-wp-users-list-table.php:397
+#: wp-admin/includes/class-wp-ms-users-list-table.php:217
+msgid "E-mail"
+msgstr "البريد الإلكتروني"
+
 #. translators: %s: Theme name.
 #: wp-admin/includes/class-theme-upgrader.php:93
 msgid "<strong>The parent theme could not be found.</strong> You will need to install the parent theme, %s, before you can use this child theme."
@@ -10354,13 +10415,15 @@ msgstr "إظهار شريط الأدوات في واجهة الموقع"
 
 #. translators: %s: HelpHub URL.
 #. translators: %s: Documentation URL.
-#: wp-admin/about.php:65 wp-admin/about.php:90 wp-admin/about.php:394
+#: wp-admin/about.php:65 wp-admin/about.php:91 wp-admin/about.php:117
+#: wp-admin/about.php:421
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "لمزيد من المعلومات، شاهد <a href=\"%s\">ملاحظات الإصدار</a>."
 
+#. translators: 1: WordPress version number, 2: Plural number of bugs.
 #. translators: 1: WordPress version number, 2: Plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:388
+#: wp-admin/about.php:53 wp-admin/about.php:415
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "<strong>النسخة %1$s</strong> عالجت بعض المشاكل الأمنية وأصلحت %2$s أخطاء."
@@ -10373,7 +10436,7 @@ msgstr[5] "<strong>النسخة %1$s</strong> عالجت بعض المشاكل �
 #. translators: 1: WordPress version number, 2: Plural number of bugs.
 #. translators: 1: WordPress version number, 2: Plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:78 wp-admin/about.php:382
+#: wp-admin/about.php:79 wp-admin/about.php:409
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "<strong>النسخة %1$s</strong> عالجت مشكلة أمنية وأصلحت %2$s أخطاء."
@@ -10384,7 +10447,7 @@ msgstr[4] "<strong>النسخة %1$s</strong> عالجت مشكلة أمنية �
 msgstr[5] "<strong>النسخة %1$s</strong> عالجت مشكلة أمنية وأصلحت %2$s أخطاء."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs.
-#: wp-admin/about.php:53 wp-admin/about.php:376
+#: wp-admin/about.php:105 wp-admin/about.php:403
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "<strong>النسخة %1$s</strong> عالجت %2$s أخطاء."
@@ -10395,19 +10458,19 @@ msgstr[4] "<strong>النسخة %1$s</strong> عالجت %2$s خطأ."
 msgstr[5] "<strong>النسخة %1$s</strong> عالجت %2$s أخطاء."
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:373
+#: wp-admin/about.php:400
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "<strong>النسخة %s</strong> عالجت عدة مُشكلات أمنية."
 
-#: wp-admin/about.php:367
+#: wp-admin/about.php:394
 msgid "Maintenance and Security Release"
 msgstr "إصدار صيانة وأمني"
 
-#: wp-admin/about.php:364
+#: wp-admin/about.php:391
 msgid "Security Release"
 msgstr "إصدار أمني"
 
-#: wp-admin/about.php:361
+#: wp-admin/about.php:388
 msgid "Maintenance Release"
 msgstr "إصدار صيانة"
 
@@ -10677,15 +10740,15 @@ msgid "Because this is a multisite installation, you may add accounts that alrea
 msgstr "كونك تستخدم نسخة المواقع المتعدّدة (Multi-Site)، تستطيع إذاً إضافة حسابات جديدة موجودة سابقاً على الشبكة وذلك عن طريق تحديد اسم المستخدم أو البريد الإلكتروني، ثمّ تحديد الدور. للمزيد من الخيارات، مثل تحديد كلمة المرور، يجب أن تكون لديك صلاحيات مدير الشبكة وحينها يمكنك التوجّه إلى (إدارة الشبكة > كافة الأعضاء) ومن ثمّ إجراء التعديلات التي تريدها."
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:108
+#: wp-admin/about.php:135
 msgid "Welcome to WordPress %s"
 msgstr "مرحبًا بك في ووردبريس %s"
 
-#: wp-admin/about.php:348
+#: wp-admin/about.php:375
 msgid "Go to Dashboard &rarr; Home"
 msgstr "الانتقال إلى لوحة التحكم &larr; الرئيسية"
 
-#: wp-admin/about.php:341
+#: wp-admin/about.php:368
 msgid "Go to Dashboard &rarr; Updates"
 msgstr "الانتقال إلى لوحة التحكم &larr; تحديثات"
 
@@ -11345,7 +11408,7 @@ msgstr "أنت على وشك تنصيب ووردبريس %s <strong>باللغة
 msgid "There is a new version of %1$s available. <a href=\"%2$s\" %3$s>View version %4$s details</a>. <em>Automatic update is unavailable for this plugin.</em>"
 msgstr "هُناك نسخة جديدة مُتاحة من %1$s. <a href=\"%2$s\" %3$s>عرض تفاصيل النسخة %4$s</a> <em>التحديث التلقائي غير مُتاح لهذه الإضافة.</em>"
 
-#: wp-admin/includes/class-theme-upgrader-skin.php:44 wp-admin/update.php:215
+#: wp-admin/includes/class-theme-upgrader-skin.php:44 wp-admin/update.php:219
 msgid "Update Theme"
 msgstr "تحديث القالب"
 
@@ -12142,12 +12205,12 @@ msgid "No items."
 msgstr "لا توجد عناصر."
 
 #. translators: %s: Asterisk symbol (*).
-#: wp-admin/includes/schema.php:1143
+#: wp-admin/includes/schema.php:1141
 msgid "To use a subdomain configuration, you must have a wildcard entry in your DNS. This usually means adding a %s hostname record pointing at your web server in your DNS configuration tool."
 msgstr "لاستخدام نظام النطاقات الفرعية، يجب أن يكون لديك (wildcard entry) في خادم اسم النطاق (DNS). هذا عادةً يعني إضافة السجل %s مع اسم خادم الويب الخاص بك عبر أداة إعداد الـ DNS."
 
 #. translators: %s: Host name.
-#: wp-admin/includes/schema.php:1132
+#: wp-admin/includes/schema.php:1130
 msgid "The installer attempted to contact a random hostname (%s) on your domain."
 msgstr "أداة التنصيب حاولت الاتصال بمستضيف عشوائي (%s) على النطاق الخاص بك."
 
@@ -12359,28 +12422,28 @@ msgstr "حفظ القائمة"
 msgid "Updating Theme %1$s (%2$d/%3$d)"
 msgstr "جاري تحديث القالب <span dir=\"ltr\">(%2$d/%3$d)</span> %1$s"
 
-#: wp-admin/includes/schema.php:1147
+#: wp-admin/includes/schema.php:1145
 msgid "You can still use your site but any subdomain you create may not be accessible. If you know your DNS is correct, ignore this message."
 msgstr "يمكنك الاستمرار في استخدام موقعك ولكن أي نطاق فرعي سوف تقوم بإضافته قد يتعذر عليك الوصول إليه. إذا كنت متأكد أنّ إعدادات الـ DNS الخاصة بك صحيحة، تجاهل هذه الرسالة."
 
 #. translators: %s: Error message.
-#: wp-admin/includes/schema.php:1137
+#: wp-admin/includes/schema.php:1135
 msgid "This resulted in an error message: %s"
 msgstr "النتيجة هي رسالة خطأ: %s"
 
-#: wp-admin/includes/schema.php:1016
+#: wp-admin/includes/schema.php:1014
 msgid "You must provide a valid email address."
 msgstr "يجب عليك تقديم عنوان بريد إلكتروني صالح."
 
-#: wp-admin/includes/schema.php:1005 wp-admin/includes/schema.php:1011
+#: wp-admin/includes/schema.php:1003 wp-admin/includes/schema.php:1009
 msgid "The network already exists."
 msgstr "هذه الشبكة موجودة مسبقاً."
 
-#: wp-admin/includes/schema.php:998
+#: wp-admin/includes/schema.php:996
 msgid "You must provide a name for your network of sites."
 msgstr "يجب أن توفّر اسماً لشبكة مواقعك."
 
-#: wp-admin/includes/schema.php:995
+#: wp-admin/includes/schema.php:993
 msgid "You must provide a domain name."
 msgstr "يجب عليك إضافة اسم النطاق."
 
@@ -12441,7 +12504,7 @@ msgstr "تحديثات ووردبريس"
 msgid "Edit menu item"
 msgstr "تحرير عنصر القائمة"
 
-#: wp-admin/about.php:348 wp-admin/includes/network.php:166
+#: wp-admin/about.php:375 wp-admin/includes/network.php:166
 msgid "Go to Dashboard"
 msgstr "إذهب إلى الصفحة الرئيسية في لوحة التحكم"
 
@@ -12787,27 +12850,27 @@ msgid "Your WordPress database is already up to date!"
 msgstr "قاعدة بيانات ووردبريس محدّثة حاليًا!"
 
 #. translators: %s: File name.
-#: wp-admin/update.php:315
+#: wp-admin/update.php:323
 msgid "Installing theme from uploaded file: %s"
 msgstr "جاري إتمام تنصيب القالب من الملف المرفوع: %s"
 
 #: wp-admin/theme-install.php:60 wp-admin/theme-install.php:178
-#: wp-admin/theme-install.php:180 wp-admin/update.php:308
+#: wp-admin/theme-install.php:180 wp-admin/update.php:316
 msgid "Upload Theme"
 msgstr "رفع قالب"
 
 #. translators: %s: Theme name and version.
-#: wp-admin/update.php:287
+#: wp-admin/update.php:291
 msgid "Installing Theme: %s"
 msgstr "تنصيب القالب: %s"
 
 #. translators: %s: File name.
-#: wp-admin/update.php:167
+#: wp-admin/update.php:171
 msgid "Installing plugin from uploaded file: %s"
 msgstr "جاري إتمام تنصيب الإضافة من الملف المرفوع: %s"
 
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:122
-#: wp-admin/plugin-install.php:150 wp-admin/update.php:160
+#: wp-admin/plugin-install.php:150 wp-admin/update.php:164
 msgid "Upload Plugin"
 msgstr "رفع إضافة"
 
@@ -13617,7 +13680,7 @@ msgstr "أهلاً بالعالم !"
 
 #. translators: %s: Site link.
 #. translators: First post content. %s: Site link.
-#: wp-admin/includes/schema.php:1295 wp-admin/includes/upgrade.php:196
+#: wp-admin/includes/schema.php:1293 wp-admin/includes/upgrade.php:196
 msgid "Welcome to %s. This is your first post. Edit or delete it, then start writing!"
 msgstr ""
 "مرحباً بك في %s. هذه مقالتك الأولى. حرّرها أو احذفها، ثم ابدأ النشر!\n"
@@ -13780,7 +13843,7 @@ msgstr "تعطيل وضع إمكانية الوصول"
 msgid "Enable accessibility mode"
 msgstr "تمكين وضع إمكانية الوصول"
 
-#: wp-admin/update.php:280
+#: wp-admin/update.php:284
 msgid "Install Themes"
 msgstr "تنصيب قوالب"
 
@@ -13938,7 +14001,7 @@ msgstr "تحرير&nbsp;سريع"
 msgid "Quick Edit"
 msgstr "تحرير سريع"
 
-#: wp-admin/includes/schema.php:1128
+#: wp-admin/includes/schema.php:1126
 msgid "Warning! Wildcard DNS may not be configured correctly!"
 msgstr "تحذر! يبدو أنّ ال Wildcard DNS غير معّد بشكل صحيح!"
 
@@ -14850,8 +14913,8 @@ msgid "The uploaded file could not be moved to %s."
 msgstr "لا يمكن نقل الملف الذي تم رفعه إلى مجلد %s."
 
 #: wp-admin/includes/class-file-upload-upgrader.php:57
-#: wp-admin/includes/class-file-upload-upgrader.php:96
-#: wp-admin/includes/class-file-upload-upgrader.php:112
+#: wp-admin/includes/class-file-upload-upgrader.php:120
+#: wp-admin/includes/class-file-upload-upgrader.php:136
 msgid "Please select a file"
 msgstr "فضلاً، قم باختيار ملف"
 
@@ -14954,6 +15017,7 @@ msgstr "تعطيل وضع الصيانة &#8230;"
 msgid "Enabling Maintenance mode&#8230;"
 msgstr "تمكين وضع الصيانة &#8230;"
 
+#: wp-admin/includes/class-file-upload-upgrader.php:92
 #: wp-admin/includes/file.php:1666 wp-admin/includes/file.php:1864
 msgid "Incompatible Archive."
 msgstr "أرشيف غير متوافق."

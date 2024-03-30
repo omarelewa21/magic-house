@@ -22,7 +22,10 @@ import {
 	filterBlocks,
 } from '../utils/filter-blocks';
 import { filterPages } from '../utils/filter-pages';
+import { getLocalStorageItem } from '../helpers';
+import { TOTAL_STEPS } from '../onboarding-ai';
 import * as actionTypes from './action-types';
+import { omit } from 'lodash';
 
 const aiStepValues = astraSitesVars?.business_details;
 const patternsAndCategories = getPatternsWithCategories(
@@ -33,13 +36,69 @@ const pagesAndCategories = getPagesWithCategories(
 	getBlocksPages(),
 	astraSitesVars?.allCategories
 );
-const [ businessTypeSlug, businessTypeName ] = aiStepValues?.business_category
-	? Object.entries( astraSitesVars?.default_ai_categories )?.find(
-			( [ slug ] ) => aiStepValues?.business_category === slug
-	  )
-	: [];
+
 const { selectedImages } = getFromSessionStorage( SESSION_STORAGE_KEY, {} );
-// const spectraProStatus = getSpectraProStatus();
+
+export const defaultOnboardingAIState = {
+	showOnboarding: false,
+	updateImages: false,
+	currentStep: astraSitesVars?.zip_token_exists ? 2 : 1,
+	isNewUser: !! astraSitesVars?.is_new_user,
+	stepData: {
+		token: aiStepValues?.token || '',
+		businessType: aiStepValues?.business_category || '',
+		siteLanguage: 'en',
+		businessName: aiStepValues?.business_name || '',
+		businessDetails: aiStepValues?.business_description || '',
+		keywords: aiStepValues?.image_keywords || [],
+		selectedImages: !! selectedImages?.length
+			? selectedImages
+			: [ ...( aiStepValues?.images ?? [] ) ],
+		imagesPreSelected: !! aiStepValues?.images || false,
+		businessContact: {
+			phone: aiStepValues?.business_phone || '',
+			email: aiStepValues?.business_email || '',
+			address: aiStepValues?.business_address || '',
+			socialMedia: aiStepValues?.social_profiles || [],
+		},
+		templateKeywords: aiStepValues?.template_keywords || [],
+		templateList: aiStepValues?.templateList || [],
+		selectedTemplate: aiStepValues?.selectedTemplate || '',
+		templateSearchResults: aiStepValues?.templateSearchResults || '',
+		descriptionListStore: {
+			list: [],
+			currentPage: 0,
+		},
+		siteFeatures: [],
+	},
+	websiteInfo: aiStepValues?.websiteInfo || {},
+	websiteVersionList: [],
+	selectedWebsiteVersion: null,
+	limitExceedModal: {
+		open: false,
+	},
+	continueProgressModal: {
+		open: false,
+	},
+};
+
+const keysToIgnore = [ 'limitExceedModal' ];
+// Saved AI onboarding state.
+let savedAiOnboardingState = getLocalStorageItem( 'ai-onboarding-details' );
+if ( savedAiOnboardingState ) {
+	savedAiOnboardingState = omit( savedAiOnboardingState, keysToIgnore );
+	savedAiOnboardingState = {
+		...defaultOnboardingAIState,
+		...savedAiOnboardingState,
+	};
+}
+
+if (
+	savedAiOnboardingState?.currentStep === 1 &&
+	astraSitesVars?.zip_token_exists
+) {
+	savedAiOnboardingState.currentStep = 2;
+}
 
 export const initialState = {
 	// Popup.
@@ -133,57 +192,7 @@ export const initialState = {
 	activePagePalette: {},
 
 	// Onboarding AI.
-	onboardingAI: {
-		showOnboarding: false,
-		updateImages: false,
-		currentStep: 1,
-		isNewUser: !! astraSitesVars?.is_new_user,
-		stepData: {
-			token: aiStepValues?.token || '',
-			businessType:
-				businessTypeSlug && businessTypeName
-					? {
-							slug: businessTypeSlug,
-							name: businessTypeName,
-					  }
-					: {},
-			businessName: aiStepValues?.business_name || '',
-			businessDetails: aiStepValues?.business_description || '',
-			keywords: aiStepValues?.image_keywords || [],
-			selectedImages: !! selectedImages?.length
-				? selectedImages
-				: [
-						...( aiStepValues?.images?.landscape ?? [] ),
-						...( aiStepValues?.images?.portrait ?? [] ),
-				  ],
-			imagesPreSelected:
-				!! aiStepValues?.images?.landscape?.length ||
-				!! aiStepValues?.images?.portrait?.length ||
-				false,
-			businessContact: {
-				phone: aiStepValues?.business_phone || '',
-				email: aiStepValues?.business_email || '',
-				address: aiStepValues?.business_address || '',
-				socialMedia: aiStepValues?.social_profiles || [],
-			},
-			templateList: aiStepValues?.templateList || [],
-			selectedTemplate: aiStepValues?.selectedTemplate || '',
-			templateSearchResults: aiStepValues?.templateSearchResults || '',
-			descriptionListStore: {
-				list: [],
-				currentPage: 0,
-			},
-		},
-		websiteInfo: aiStepValues?.websiteInfo || {},
-		websiteVersionList: [],
-		selectedWebsiteVersion: null,
-		limitExceedModal: {
-			open: false,
-		},
-		continueProgressModal: {
-			open: false,
-		},
-	},
+	onboardingAI: savedAiOnboardingState ?? defaultOnboardingAIState,
 
 	// Settings.
 	disableAi: !! astraSitesVars?.disable_ai,
@@ -498,7 +507,6 @@ const reducer = ( state = initialState, action ) => {
 			disableAi: actionTypes?.payload ?? ! state.disableAi,
 		};
 	} else if ( action.type === actionTypes.SET_NEXT_AI_STEP ) {
-		const TOTAL_STEPS = 11;
 		const nextStep = state.onboardingAI.currentStep + 1;
 		if ( nextStep > TOTAL_STEPS ) {
 			return state;
@@ -543,6 +551,19 @@ const reducer = ( state = initialState, action ) => {
 				},
 			},
 		};
+	} else if (
+		action.type === actionTypes.SET_WEBSITE_LANGUAGE_LIST_AI_STEP
+	) {
+		return {
+			...state,
+			onboardingAI: {
+				...state.onboardingAI,
+				stepData: {
+					...state.onboardingAI.stepData,
+					siteLanguageList: action.payload,
+				},
+			},
+		};
 	} else if ( action.type === actionTypes.SET_WEBSITE_VERSION_LIST ) {
 		return {
 			...state,
@@ -583,6 +604,21 @@ const reducer = ( state = initialState, action ) => {
 				stepData: {
 					...state.onboardingAI.stepData,
 					businessType: action.payload,
+				},
+				limitExceedModal: {
+					...state.onboardingAI.limitExceedModal,
+					limitExceedModal: action.payload,
+				},
+			},
+		};
+	} else if ( action.type === actionTypes.SET_WEBSITE_LANGUAGE_AI_STEP ) {
+		return {
+			...state,
+			onboardingAI: {
+				...state.onboardingAI,
+				stepData: {
+					...state.onboardingAI.stepData,
+					siteLanguage: action.payload,
 				},
 				limitExceedModal: {
 					...state.onboardingAI.limitExceedModal,
@@ -745,7 +781,7 @@ const reducer = ( state = initialState, action ) => {
 				currentStep: 1,
 				stepData: {
 					token: '',
-					businessType: {},
+					businessType: '',
 					businessName: '',
 					businessDetails: '',
 					keywords: [],
@@ -981,6 +1017,56 @@ const reducer = ( state = initialState, action ) => {
 				showOnboarding: ! state.onboardingAI.showOnboarding,
 				updateImages: ! state.onboardingAI.updateImages,
 				currentStep: ! state.onboardingAI.updateImages ? 6 : 1,
+			},
+		};
+	}
+
+	if ( action.type === actionTypes.STORE_SITE_FEATURES ) {
+		const stepData = { ...state.onboardingAI.stepData };
+		return {
+			...state,
+			onboardingAI: {
+				...state.onboardingAI,
+				stepData: {
+					...stepData,
+					siteFeatures: action.payload,
+				},
+			},
+		};
+	}
+
+	if ( action.type === actionTypes.SET_SITE_FEATURES ) {
+		return {
+			...state,
+			onboardingAI: {
+				...state.onboardingAI,
+				stepData: {
+					...state.onboardingAI.stepData,
+					siteFeatures: state.onboardingAI.stepData.siteFeatures.map(
+						( item ) => {
+							if ( item.id === action.payload ) {
+								return {
+									...item,
+									enabled: ! item.enabled,
+								};
+							}
+							return item;
+						}
+					),
+				},
+			},
+		};
+	}
+
+	if ( action.type === actionTypes.SET_WEBSITE_TEMPLATE_KEYWORDS ) {
+		return {
+			...state,
+			onboardingAI: {
+				...state.onboardingAI,
+				stepData: {
+					...state.onboardingAI.stepData,
+					templateKeywords: action.payload,
+				},
 			},
 		};
 	}

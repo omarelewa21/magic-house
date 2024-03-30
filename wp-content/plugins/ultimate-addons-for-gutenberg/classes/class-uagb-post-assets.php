@@ -258,20 +258,41 @@ class UAGB_Post_Assets {
 	public function get_woocommerce_template() {
 		// Check if WooCommerce is active.
 		if ( class_exists( 'WooCommerce' ) ) {
-			if ( is_cart() ) {
-				return 'cart';
-			} elseif ( is_checkout() ) {
-				return 'checkout';
-			} elseif ( is_shop() ) {
-				return 'archive-product';
-			} elseif ( is_product() ) {
-				return 'single-product';
-			} elseif ( is_product_taxonomy() ) {
-				return 'taxonomy-product_cat';
-			} elseif ( is_product_tag() ) {
-				return 'taxonomy-product_tag';
-			} elseif ( is_product_category() ) {
-				return 'taxonomy-product_cat';
+			// Check other WooCommerce pages.
+			switch ( true ) {
+				case is_cart():
+					return 'page-cart';
+				case is_checkout():
+					return 'page-checkout';
+				case is_product():
+					return 'single-product';
+				case is_archive():
+					$object          = get_queried_object();
+					$searchCondition = is_search() && is_post_type_archive( 'product' );
+
+					switch ( true ) {
+						case is_product_taxonomy() && $object instanceof WP_Term:
+							if ( taxonomy_is_product_attribute( $object->taxonomy ) ) {
+								return $searchCondition ? 'product-search-results' : 'taxonomy-product_attribute';
+							} elseif ( in_array( $object->taxonomy, array( 'product_cat', 'product_tag' ) ) ) {
+								return $searchCondition ? 'product-search-results' : 'taxonomy-' . $object->taxonomy;
+							}
+							break;
+
+						case is_product_tag() || is_product_category():
+							return $searchCondition ? 'product-search-results' : ( 'taxonomy-' . ( is_product_tag() ? 'product_tag' : 'product_cat' ) );
+
+						case is_shop():
+							return $searchCondition ? 'product-search-results' : 'archive-product';
+
+						default:
+							return $searchCondition ? 'product-search-results' : 'archive-product';
+					}
+					break;
+
+				default:
+					// Handle other cases if needed.
+					break;
 			}
 		}
 		return false;
@@ -303,8 +324,8 @@ class UAGB_Post_Assets {
 			'is_embed'      => 'embed',
 			'is_front_page' => 'home',
 			'is_home'       => 'home',
-			'is_paged'      => 'paged',
 			'is_search'     => 'search',
+			'is_paged'      => 'paged',
 		); // Conditional tags to post type.
 
 		$what_post_type     = '404'; // Default to '404' if no condition matches.
@@ -616,7 +637,9 @@ class UAGB_Post_Assets {
 			$blocks = array();
 		if ( UAGB_Admin_Helper::is_block_theme() ) {
 			global $_wp_current_template_content;
-			$blocks = parse_blocks( $_wp_current_template_content );
+			if ( isset( $_wp_current_template_content ) ) {
+				$blocks = parse_blocks( $_wp_current_template_content );
+			}
 		}
 			// Global Required assets.
 			// If the current template has content and contains blocks, execute this code block.
@@ -825,13 +848,22 @@ class UAGB_Post_Assets {
 
 		$file_handler = $this->assets_file_handler;
 
+		/*
+		* Added filter to allows developers and users to adjust constant values for theme compatibility, easy updates, and compatibility with other plugins.
+		*/
+		$uagb_asset_ver = apply_filters( 'uagb_asset_version', UAGB_ASSET_VER );
+
+		if ( empty( $uagb_asset_ver ) || ! is_string( $uagb_asset_ver ) ) { 
+			$uagb_asset_ver = UAGB_ASSET_VER; 
+		}
+
 		if ( isset( $file_handler['css_url'] ) ) {
-			wp_enqueue_style( 'uag-style-' . $this->post_id, $file_handler['css_url'], array(), UAGB_ASSET_VER, 'all' );
+			wp_enqueue_style( 'uag-style-' . $this->post_id, $file_handler['css_url'], array(), $uagb_asset_ver, 'all' );
 		} else {
 			$this->fallback_css = true;
 		}
 		if ( isset( $file_handler['js_url'] ) ) {
-			wp_enqueue_script( 'uag-script-' . $this->post_id, $file_handler['js_url'], array(), UAGB_ASSET_VER, true );
+			wp_enqueue_script( 'uag-script-' . $this->post_id, $file_handler['js_url'], array(), $uagb_asset_ver, true );
 		} else {
 			$this->fallback_js = true;
 		}
@@ -1308,10 +1340,25 @@ class UAGB_Post_Assets {
 	 * @since 1.1.0
 	 */
 	public function get_blocks_assets( $blocks ) {
+		$static_and_dynamic_assets = $this->get_static_and_dynamic_assets( $blocks );
+		return array(
+			'css' => $static_and_dynamic_assets['static'] . $static_and_dynamic_assets['dynamic'],
+			'js'  => $static_and_dynamic_assets['js'],
+		);
+	}
 
-		$desktop = '';
-		$tablet  = '';
-		$mobile  = '';
+	/**
+	 * Get static & dynamic css for block.
+	 *
+	 * @param array $blocks Blocks array.
+	 * @since 2.12.3
+	 * @return array Of static and dynamic css and js.
+	 */
+	public function get_static_and_dynamic_assets( $blocks ) {
+		$desktop    = '';
+		$tablet     = '';
+		$mobile     = '';
+		$static_css = '';
 
 		$tab_styling_css = '';
 		$mob_styling_css = '';
@@ -1356,7 +1403,7 @@ class UAGB_Post_Assets {
 					$css = $block_assets['css'];
 
 					if ( ! empty( $css['common'] ) ) {
-						$desktop .= $css['common'];
+						$static_css .= $css['common'];
 					}
 
 					if ( isset( $css['desktop'] ) ) {
@@ -1381,8 +1428,9 @@ class UAGB_Post_Assets {
 			$mob_styling_css .= '}';
 		}
 		return array(
-			'css' => $block_css . $desktop . $tab_styling_css . $mob_styling_css,
-			'js'  => $js,
+			'static'  => $static_css,
+			'dynamic' => $block_css . $desktop . $tab_styling_css . $mob_styling_css,
+			'js'      => $js,
 		);
 	}
 
@@ -1616,5 +1664,35 @@ class UAGB_Post_Assets {
 		$pattern = $registry->get_registered( $slug );
 
 		return $this->get_blocks_assets( parse_blocks( $pattern['content'] ) );
+	}
+
+	/**
+	 * Get static and dynamic assets data for a post. Its a helper function used by starter templates and GT library.
+	 *
+	 * @param int $post_id The post id.
+	 * @since 2.12.3
+	 * @return array of Static and dynamic css and js.
+	 */
+	public function get_static_and_dynamic_css( $post_id ) {
+
+		$this_post = get_post( $post_id );
+
+		if ( empty( $this_post ) || empty( $this_post->ID ) ) {
+			return array();
+		}
+
+		if ( has_blocks( $this_post->ID ) && ! empty( $this_post->post_content ) ) {
+
+			$blocks = $this->parse_blocks( $this_post->post_content );
+
+			if ( ! is_array( $blocks ) || empty( $blocks ) ) {
+				return array();
+			}
+
+			return $this->get_static_and_dynamic_assets( $blocks );
+		}
+
+		return array();
+
 	}
 }

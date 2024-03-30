@@ -145,6 +145,9 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing' ) ) :
 			// Prepare Misc.
 			require_once ASTRA_SITES_DIR . 'inc/importers/batch-processing/class-astra-sites-batch-processing-misc.php';
 
+			// Prepare Cleanup.
+			require_once ASTRA_SITES_DIR . 'inc/importers/batch-processing/class-astra-sites-batch-processing-cleanup.php';
+
 			// Prepare Customizer.
 			require_once ASTRA_SITES_DIR . 'inc/importers/batch-processing/class-astra-sites-batch-processing-customizer.php';
 
@@ -948,7 +951,7 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing' ) ) :
 
 			// Add "customizer" in import [queue].
 			$classes[] = Astra_Sites_Batch_Processing_Customizer::get_instance();
-
+			
 			if ( defined( 'WP_CLI' ) ) {
 				WP_CLI::line( 'Batch Process Started..' );
 				// Process all classes.
@@ -989,6 +992,13 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing' ) ) :
 					'no_found_rows'  => true,
 					'post_status'    => 'publish',
 					'posts_per_page' => -1,
+					'meta_query'     => array( //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+						array(
+							'key'     => '_astra_sites_imported_post',
+							'value'   => '1',
+							'compare' => '=',
+						),
+					),
 				);
 
 				$query = new WP_Query( $args );

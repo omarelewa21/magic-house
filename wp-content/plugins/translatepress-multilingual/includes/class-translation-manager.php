@@ -47,7 +47,6 @@ class TRP_Translation_Manager {
      */
     protected function conditions_met( $mode = 'true' ) {
         if ( isset( $_REQUEST['trp-edit-translation'] ) && sanitize_text_field( $_REQUEST['trp-edit-translation'] ) == $mode ) {
-            return true;
             if ( current_user_can( apply_filters( 'trp_translating_capability', 'manage_options' ) ) && !is_admin() ) {
                 return true;
             } elseif ( sanitize_text_field( $_REQUEST['trp-edit-translation'] ) == "preview" ) {
