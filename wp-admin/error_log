@@ -12,3 +12,22 @@
 [24-Jan-2024 09:43:12 UTC] PHP Warning:  Undefined array key 0 in /home/shadrmow/magic-house.shadow-creative.agency/wp-content/plugins/automatic-translate-addon-for-translatepress/automatic-translate-addon-for-translatepress.php on line 291
 [24-Jan-2024 09:43:12 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/shadrmow/magic-house.shadow-creative.agency/wp-content/plugins/automatic-translate-addon-for-translatepress/automatic-translate-addon-for-translatepress.php on line 291
 [24-Jan-2024 09:43:12 UTC] WordPress database error You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ON DUPLICATE KEY UPDATE `id`=VALUES( `id` ),' at line 1 for query INSERT INTO `wp_trp_gettext_ar` (  ) VALUES  ON DUPLICATE KEY UPDATE `id`=VALUES( `id` ), made by do_action('wp_ajax_tpa_save_translations'), WP_Hook->do_action, WP_Hook->apply_filters, TranslatePressAddon->tpa_save_translations, TranslatePressAddon->wp_insert_rows
+[30-Mar-2024 09:42:42 UTC] BLOCK: Getting Spectra Common CSS
+[30-Mar-2024 09:42:42 UTC] BLOCK: https://websitedemos.net/wp-json/astra-blocks/v2/spectra-common-styles
+[30-Mar-2024 09:44:37 UTC] BLOCK: Getting Spectra Common CSS
+[01-Apr-2024 00:50:16 UTC] BLOCK: Getting Spectra Common CSS
+[01-Apr-2024 00:50:18 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 04:59:11 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:01:18 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:01:54 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:02:16 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:02:30 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:02:55 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:03:37 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:03:57 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:08:57 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:09:35 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:14:02 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:30:31 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:37:42 UTC] BLOCK: Getting Spectra Common CSS
+[02-Apr-2024 05:38:08 UTC] BLOCK: Getting Spectra Common CSS

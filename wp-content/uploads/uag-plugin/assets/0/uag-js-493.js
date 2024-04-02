@@ -1,4 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(){ window.addEventListener("DOMContentLoaded", function(){
-	UAGBForms.init( {"block_id":"30bfd676","reCaptchaEnable":true,"reCaptchaType":"v3","reCaptchaSiteKeyV2":"","reCaptchaSecretKeyV2":"","reCaptchaSiteKeyV3":"","reCaptchaSecretKeyV3":"","afterSubmitToEmail":"omarelewa21@gmail.com","afterSubmitCcEmail":"","afterSubmitBccEmail":"","afterSubmitEmailSubject":"Someone requested a qoute","sendAfterSubmitEmail":true,"confirmationType":"message","hidereCaptchaBatch":true,"captchaMessage":"Please fill up the above captcha.","confirmationUrl":""}, '.uagb-block-30bfd676', 493 );
+	UAGBForms.init( {"block_id":"30bfd676","reCaptchaEnable":false,"reCaptchaType":"v3","reCaptchaSiteKeyV2":"","reCaptchaSecretKeyV2":"","reCaptchaSiteKeyV3":"","reCaptchaSecretKeyV3":"","afterSubmitToEmail":"omarelewa21@gmail.com","afterSubmitCcEmail":"","afterSubmitBccEmail":"","afterSubmitEmailSubject":"Someone requested a qoute","sendAfterSubmitEmail":true,"confirmationType":"message","hidereCaptchaBatch":true,"captchaMessage":"Please fill up the above captcha.","confirmationUrl":""}, '.uagb-block-30bfd676', 493 );
 });
  });
