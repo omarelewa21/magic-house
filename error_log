@@ -1323,3 +1323,5 @@
 [02-Apr-2024 04:57:44 UTC] BLOCK: Getting Server Custimizer CSS
 [02-Apr-2024 04:57:44 UTC] BLOCK: https://websitedemos.net/wp-json/astra-blocks/v2/get-customizer-css
 [02-Apr-2024 04:57:50 UTC] Blocks are up to date.
+[02-Apr-2024 09:45:16 UTC] PHP Warning:  Undefined array key "width" in /home/shadrmow/magic-house.ae/wp-admin/includes/image.php on line 110
+[02-Apr-2024 09:45:16 UTC] PHP Warning:  Undefined array key "height" in /home/shadrmow/magic-house.ae/wp-admin/includes/image.php on line 111
