@@ -8890,3 +8890,25 @@ function wp_admin_notice( $message, $args = array() ) {
 
 	echo wp_kses_post( wp_get_admin_notice( $message, $args ) );
 }
+
+function redirect_search_to_page_or_404() {
+    if (is_search()) {
+        global $wp_query;
+        $search_query = get_search_query();
+        $page = get_page_by_path($search_query);
+
+        // Check if the page exists
+        if ($page) {
+            // Redirect to the page if exists
+            wp_redirect(get_permalink($page->ID));
+            exit;
+        } else {
+            // Redirect to 404 if no page matches the search query
+            $wp_query->set_404();
+            status_header(404);
+            wp_redirect("/404-2");
+            exit;
+        }
+    }
+}
+add_action('template_redirect', 'redirect_search_to_page_or_404');
